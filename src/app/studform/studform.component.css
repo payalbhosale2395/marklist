@@ -1,0 +1,10 @@
+th, td ,label{ 
+   padding:15px;   
+    text-align: center;
+  }
+  .container{
+      margin-top: 30px;
+    margin-left: 15em;
+    background-color: #f2f2f2;
+    width: 50%;
+}

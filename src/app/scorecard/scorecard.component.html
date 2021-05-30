@@ -1,0 +1,42 @@
+
+<div class="container">
+    
+ <h1> <div class="row">Maharastra State Board Of </div>
+    <div class="row">Secondary and Higher Secondary Education</div></h1>
+    <h2>Pune Division Board</h2>
+    <h2>SECONDARY SCHOOL CERFITICATE EXAMINATION - STATEMENT OF MARK</h2>
+    
+    
+    <h4>Full Name :
+    {{this.user.name}}</h4>
+   
+    
+    <h4>rollnumber:
+    {{this.user.rollno}}</h4>
+    
+     <table>
+         <th> Subject </th><th>Obtained Mark </th>
+         <th>Total mark</th>  
+    <tbody>
+                 
+
+        <tr *ngFor="let i of this.user.addsubject">
+            <td><p>{{ i.subject }}</p></td><td><p>{{ i.ObtainedMark }}</p></td>
+            <td><p>{{ i.OutOf }}</p></td>            
+        </tr>
+        <tr>
+        
+            <td> <h4>Result: {{ this.grade }}</h4>
+            <h4>Percentage: {{ this.avg }}</h4></td>
+           
+            <td><h4>Obtained Mark:</h4><h4>{{ this.obtainMark }}</h4></td>
+             
+            <td><h4>Total mark :</h4><h4>{{ this.totalmark }}</h4></td>
+            </tr>
+            <tr>
+            
+            
+            </tr>
+    </tbody>
+</table>
+</div>

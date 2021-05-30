@@ -1,0 +1,89 @@
+<div class="container">
+<h1>Student scorecard</h1>
+<form [formGroup]="form">
+
+<div class="form-group">
+<label for="name" >Full Name</label>
+<div class="row">
+    <div class="col-lg-6">
+    <input        
+        formControlName="name"            
+        id="name" 
+        type="text" 
+        class="form-control">
+    </div>
+    </div>
+</div>
+<div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+    <div  class="error" *ngIf="f.name.errors?.required">name is required</div>
+    <div  class="error" *ngIf="f.name.errors?.minlength">name should be 100 character</div>
+    <div  class="error" *ngIf="f.name.errors?.pattern">Please Enter valid name</div>
+</div>
+
+<div class="form-group">
+    <label for="name" >Roll Number</label>
+    <div class="row">
+        <div class="col-lg-6">
+        <input        
+            formControlName="rollno"            
+            id="name" 
+            type="text" 
+            class="form-control">
+        </div>
+        </div>
+    </div>
+
+    <div *ngIf="f.rollno.touched && f.rollno.invalid" class="alert alert-danger">
+        <div  class="error" *ngIf="f.rollno.errors?.required">Roll Number is required</div>
+        <div  class="error" *ngIf="f.rollno.errors?.pattern">Please Enter valid Roll Number</div>
+    </div>
+<h3>Add Subject and Marks :</h3>
+            <table class="table table-bordered" formArrayName="addsubject">
+                
+                <tr *ngFor="let quantity of addsubject().controls; let i=index" [formGroupName]="i">
+                  <td>
+                    <label for="subject">Subject :</label>
+                      <input type="text" formControlName="subject" class="form-control">
+                  </td>
+                  <td>
+                    <div class="form-group">
+                        <label for="OutOf">Out of:</label>
+                        <select formControlName="OutOf" class="form-control">
+                            <option>Choose Marks</option>
+                            <option *ngFor="let mark of OutOfMark">{{mark}}</option>
+                        </select>
+                        <div *ngIf="f.OutOf.touched && f.OutOf.invalid" class="alert alert-danger">
+                            <div *ngIf="f.OutOf.errors?.required">Mark is required.</div>
+                        </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                        <label for="name" >Obtained Mark</label>
+                        <div class="row">
+                            
+                            <input        
+                                formControlName="ObtainedMark"            
+                                id="name" 
+                                type="text" 
+                                class="form-control">
+                            
+                            </div>
+                        </div>
+                        <div *ngIf="f.ObtainedMark.touched && f.ObtainedMark.invalid" class="alert alert-danger">
+                            <div  class="error" *ngIf="f.ObtainedMark.errors?.pattern">Please Enter valid Mark</div>
+                        </div>
+                  </td>
+                  
+                  </tr>
+                  <tr>
+                      <td>
+                    <button type="button" (click)="AddMoreSubject()" class="btn btn-success">Add More Subject</button>
+                </td>
+                
+                </tr>
+              </table>                        
+<button type="submit" class="btn btn-success" (click)="Submit()">Submit</button>
+</form>
+</div>
+
