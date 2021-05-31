@@ -38,7 +38,7 @@
         <div  class="error" *ngIf="f.rollno.errors?.pattern">Please Enter valid Roll Number</div>
     </div>
 <h3>Add Subject and Marks :</h3>
-            <table class="table table-bordered" formArrayName="addsubject">
+            <table formArrayName="addsubject">
                 
                 <tr *ngFor="let quantity of addsubject().controls; let i=index" [formGroupName]="i">
                   <td>
