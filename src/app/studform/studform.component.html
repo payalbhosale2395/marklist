@@ -32,18 +32,37 @@
         </div>
         </div>
     </div>
-
-    <div *ngIf="f.rollno.touched && f.rollno.invalid" class="alert alert-danger">
-        <div  class="error" *ngIf="f.rollno.errors?.required">Roll Number is required</div>
-        <div  class="error" *ngIf="f.rollno.errors?.pattern">Please Enter valid Roll Number</div>
-    </div>
+    <div class="form-group">
+        <div *ngIf="f.rollno.touched && f.rollno.invalid" class="alert alert-danger">
+            <div  class="error" *ngIf="f.rollno.errors?.required">Roll Number is required</div>
+            <div  class="error" *ngIf="f.rollno.errors?.pattern">Roll number should be first 4 alphabet and six digit</div>
+        </div>
+        </div>
+        
 <h3>Add Subject and Marks :</h3>
-            <table formArrayName="addsubject">
-                
+            <table formArrayName="addsubject">              
                 <tr *ngFor="let quantity of addsubject().controls; let i=index" [formGroupName]="i">
                   <td>
-                    <label for="subject">Subject :</label>
-                      <input type="text" formControlName="subject" class="form-control">
+                    <div class="form-group">
+                    <input        
+                    formControlName="subject"           
+                    id="subject" 
+                    type="text" 
+                    class="form-control">                          
+                </div>
+                    
+                        
+                   
+                <!-- <div *ngIf="f.subject.touched"
+                     class="alert alert-danger">
+                        <div  class="error" *ngIf="f.subject.errors?.required"> 
+                             Please Enter valid Subject name</div> 
+                        </div>
+                        
+                   <div *ngIf="form.get('i.subject').valid">Subject is required. 
+                    </div>-->
+                     
+                    
                   </td>
                   <td>
                     <div class="form-group">
@@ -52,38 +71,40 @@
                             <option>Choose Marks</option>
                             <option *ngFor="let mark of OutOfMark">{{mark}}</option>
                         </select>
-                        <div *ngIf="f.OutOf.touched && f.OutOf.invalid" class="alert alert-danger">
-                            <div *ngIf="f.OutOf.errors?.required">Mark is required.</div>
-                        </div>
+                        
                     </div>
                   </td>
+                  
+                  
                   <td>
                     <div class="form-group">
                         <label for="name" >Obtained Mark</label>
-                        <div class="row">
-                            
+                        <div class="row">                            
                             <input        
-                                formControlName="ObtainedMark"            
+                                formControlName="ObtainedMark"           
                                 id="name" 
                                 type="text" 
-                                class="form-control">
-                            
+                                class="form-control">                          
                             </div>
                         </div>
                         <div *ngIf="f.ObtainedMark.touched && f.ObtainedMark.invalid" class="alert alert-danger">
                             <div  class="error" *ngIf="f.ObtainedMark.errors?.pattern">Please Enter valid Mark</div>
+                            <div *ngIf="f.ObtainedMark.errors?.required">Obtained mark is required.</div>
                         </div>
                   </td>
+                  <td>
+                      <br><br>
+                    <button (click)="removesubject(i)" class="btn btn-danger">Remove</button>  
+                  </td> 
+                  </tr>                
                   
-                  </tr>
                   <tr>
                       <td>
-                    <button type="button" (click)="AddMoreSubject()" class="btn btn-success">Add More Subject</button>
-                </td>
-                
+                    <button type="button" (click)="AddMoreSubject()" class="btn btn-success">Add Subject</button>
+                </td>               
                 </tr>
               </table>                        
-<button type="submit" class="btn btn-success" (click)="Submit()">Submit</button>
+<button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="Submit()">Submit</button>
 </form>
 </div>
 
